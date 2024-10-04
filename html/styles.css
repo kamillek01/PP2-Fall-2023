@@ -20,7 +20,7 @@ body {
   height: auto;
 }
 
-/* Сайдбар */
+
 .sidebar {
   width: 25%;
   padding-top: 20px;
@@ -29,11 +29,22 @@ body {
   text-align: left;
 }
 
+
+@keyframes colorChange {
+  
+  50% {
+      color: #000000; /* Промежуточный цвет */
+  }
+  100% {
+      color: #ffffff; /* Конечный цвет */
+  }
+}
 .sidebar h1 {
   font-family: 'Lobster', cursive;
   font-size: 50px;
   color: #f8f1f1;
   padding-left: 30px;
+  animation: colorChange 3s infinite;
 }
 
 .sidebar p {
@@ -72,6 +83,28 @@ body {
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Изменяем направление на вертикальное */
+  }
+
+  .sidebar {
+    width: 100%; /* Сайдбар занимает всю ширину */
+  }
+
+  .content {
+    width: 100%; /* Контент занимает всю ширину */
+  }
+
+  .sidebar h1 {
+    font-size: 24px; /* Уменьшаем размер шрифта заголовка */
+  }
+
+  .sidebar p {
+    font-size: 18px; /* Уменьшаем размер текста */
+  }
+}
+
 section {
   margin-bottom: 40px; 
   padding: 20px;
@@ -79,17 +112,36 @@ section {
   border-radius: 8px; 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
+section h1::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 4px;
+  background-color: #000000; /* Бордовый цвет линии */
+  margin-right: 10px;
+  vertical-align: middle; /* Выровнять по центру с заголовком */
+}
+section h1::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 4px;
+  background-color: #000000; /* Бордовый цвет линии */
+  margin-left: 10px;
+  vertical-align: middle; /* Выровнять по центру с заголовком */
+}
+
 
 .footer {
   background-color: #800020;
-  color: #fff; 
+  color: #ffffff; 
   padding: 20px;
   text-align: center;
   border-radius: 8px;
   margin-top: 20px; 
 }
 
-/* Фотографии */
+
 .photos {
   display: flex;
   flex-wrap: wrap;
@@ -98,12 +150,14 @@ section {
   margin-top: 30px;
 }
 
-.photos img {
+.photos img { 
   width: calc(33.33% - 15px);
   height: auto;
   object-fit: cover;
- 
-
+  transition: transform 0.3s ease; 
+}
+.photos img:hover {
+  transform: scale(1.1); 
 }
 
 
@@ -119,31 +173,43 @@ section {
   border-left: 6px solid #800020;
 }
 
-/* Хобби */
 .hobbies-container {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
 }
 
 .hobby {
+  flex-basis: 30%;
   text-align: center;
-  max-width: calc(33.33% - 15px);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .hobbies-container {
+      flex-direction: column;
+  }
+
+  .hobby {
+      flex-basis: 100%; /* Один элемент на всю ширину */
+  }
 }
 
 .hobby img {
   width: 100%;
   height: auto;
+  transition: transform 0.3s ease; 
   
+}
+.hobby img:hover {
+  transform: scale(1.1); 
 }
 
 
 /* Footer */
 .footer {
   background-color: #800020; 
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 20px;
   text-align: center;
   margin-top: 30px;
@@ -164,13 +230,19 @@ section {
 .social-icons a img {
   width: 50px;
   height: 50px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .social-icons a img:hover {
   transform: scale(1.2);
 }
 
+@media (max-width: 768px) {
+  .social-icons a img {
+      width: 70px;
+      height: 70px;
+  }
+}
 .social-icons a.whatsapp img {
   width: 80px;
   height: 60px;
@@ -185,5 +257,7 @@ section {
   width: 100px;
   height: 80px;
 }
+
+
 
 
